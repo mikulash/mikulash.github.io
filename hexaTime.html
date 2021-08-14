@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hexatime</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+</head>
+<body id="body" style="position: absolute; left: 40%; top: 50%">
+<div id="time" style="font-family:'Roboto', serif ; font-size: 50px; color: white"></div>
+</body>
+<script >
+    (function refresh() {
+        let d = new Date();
+        let h = d.getHours();
+        let m = d.getMinutes();
+        let s = d.getSeconds();
+        if (h < 10){h = "0" + h}
+        if (m < 10){m = "0" + m}
+        if (s < 10){s = "0" + s}
+        let time = document.getElementById("time");
+        let color = "#" + h + m + s;
+        time.textContent = h+":"+m+":"+s;
+        document.getElementById("body").style.backgroundColor = color;
+        setTimeout(refresh, 1000);
+    })()
+    </script>
+</html>

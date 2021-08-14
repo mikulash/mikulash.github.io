@@ -14,6 +14,6 @@ document.addEventListener("DOMContentLoaded", function(){
   let today = new Date();
   let seconds = today.getTime() - birth.getTime();
   let days = seconds / (24*60*60*1000);
-  let prvek = document.getElementById("time");
+  let prvek = document.getElementById("days");
   prvek.textContent = Math.round(days);
 })
