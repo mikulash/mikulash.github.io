@@ -9,9 +9,7 @@ const ContactSection = () => {
             heinz.mikulas@gmail.com
           </a>
         </li>
-        <li className="text-lg">
-          <strong>Phone:</strong> +420 739 147 251
-        </li>
+
         <li className="text-lg">
           <strong>LinkedIn:</strong>{" "}
           <a
