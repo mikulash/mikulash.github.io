@@ -5,6 +5,8 @@ const JobSection = () => {
       <ul className="space-y-2">
         <li className="text-lg">Job 1: Role and description.</li>
         <li className="text-lg">Job 2: Role and description.</li>
+
+        <li className="text-lg">Job 2: Role and description.</li>
         <li className="text-lg">Job 3: Role and description.</li>
       </ul>
     </section>

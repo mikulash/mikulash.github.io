@@ -1,63 +1,80 @@
-import { Button } from "@/components/ui/button.tsx";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
+import { Briefcase, File, GraduationCap, Mail } from "lucide-react";
+import { Label } from "@/components/ui/label.tsx";
 import { Switch } from "@/components/ui/switch.tsx";
-import { useState } from "react";
+import { useTheme } from "@/lib/theme-provider.tsx";
 
-const MySidebar = () => {
-  const [darkMode, setDarkMode] = useState(false);
+export function MySidebar() {
+  const { theme, setTheme } = useTheme();
 
-  const toggleTheme = () => {
-    document.documentElement.classList.toggle("dark");
-    setDarkMode(!darkMode);
+  const handleThemeChange = () => {
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
+  const items = [
+    {
+      title: "Job",
+      url: "#job",
+      icon: Briefcase,
+    },
+    {
+      title: "Education",
+      url: "#education",
+      icon: GraduationCap,
+    },
+    {
+      title: "Projects",
+      url: "#projects",
+      icon: File,
+    },
+    {
+      title: "Contact",
+      url: "#contact",
+      icon: Mail,
+    },
+  ];
+
   return (
-    <aside className="fixed h-full w-64 bg-gray-200 dark:bg-gray-800 p-4 flex flex-col gap-6">
-      {/* Theme Selector */}
-      <div className="flex items-center justify-between">
-        <label
-          htmlFor="theme-switch"
-          className="text-sm font-medium dark:text-white"
-        >
-          Dark Mode
-        </label>
-        <Switch
-          id="theme-switch"
-          checked={darkMode}
-          onCheckedChange={toggleTheme}
-          className="dark:checked:bg-gray-700"
-        />
-      </div>
-
-      {/* Language Selector */}
-      <div className="flex items-center gap-2">
-        <Button variant="outline" size="sm">
-          CZ
-        </Button>
-        <Button variant="outline" size="sm">
-          EN
-        </Button>
-      </div>
-
-      {/* Navigation Links */}
-      <nav className="flex flex-col gap-4">
-        <a href="#job" className="text-lg hover:underline dark:text-white">
-          Job
-        </a>
-        <a
-          href="#education"
-          className="text-lg hover:underline dark:text-white"
-        >
-          Education
-        </a>
-        <a href="#projects" className="text-lg hover:underline dark:text-white">
-          Projects
-        </a>
-        <a href="#contact" className="text-lg hover:underline dark:text-white">
-          Contact
-        </a>
-      </nav>
-    </aside>
+    <Sidebar>
+      <SidebarHeader className="gap-3.5 border-b p-4">
+        <div className="flex w-full items-center justify-between">
+          <Label className="flex items-center gap-2 text-sm">
+            <span>Dark theme</span>
+            <Switch className="shadow-none" onClick={handleThemeChange} />
+          </Label>
+        </div>
+      </SidebarHeader>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {items.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <a href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
   );
-};
+}
 
 export default MySidebar;

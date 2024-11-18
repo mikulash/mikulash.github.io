@@ -3,17 +3,28 @@ import ProjectsSection from "./components/ProjectsSection";
 import ContactSection from "./components/ContactSection";
 import MySidebar from "@/components/MySidebar.tsx";
 import JobSection from "@/components/JobsSection.tsx";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar.tsx";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar.tsx";
+import React from "react";
 import { ThemeProvider } from "@/lib/theme-provider.tsx";
 
 const App = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <SidebarProvider>
-        {" "}
+      <SidebarProvider
+        style={
+          {
+            "--sidebar-width": "350px",
+          } as React.CSSProperties
+        }
+      >
         <MySidebar />
-        <main className="ml-64 flex-1 overflow-y-auto">
-          <SidebarTrigger />
+        <SidebarInset />
+        <main>
+          <SidebarTrigger className="-ml-1" />
 
           <header className="p-8">
             <h1 className="text-5xl font-bold">
